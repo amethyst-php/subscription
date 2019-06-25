@@ -14,9 +14,12 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create(Config::get('amethyst.subscription.data.subscription.table'), function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('consume_rule_id')->unsigned()->nullable();
+            $table->foreign('consume_rule_id')->references('id')->on(Config::get('amethyst.consume-rule.data.consume-rule.table'));
             $table->string('status');
-            $table->integer('subscriptionable_id')->unsigned();
-            $table->string('subscriptionable_type');
+            $table->text('metadata')->nullable();
+            $table->integer('subscriptionable_id')->unsigned()->nullable();
+            $table->string('subscriptionable_type')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

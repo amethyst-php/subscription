@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Railken\Amethyst\Common\ConfigurableModel;
 use Railken\Lem\Contracts\EntityContract;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Subscription extends Model implements EntityContract
 {
@@ -30,5 +31,13 @@ class Subscription extends Model implements EntityContract
     public function subscriptionable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function consume_rule(): BelongsTo
+    {
+        return $this->belongsTo(config('amethyst.consume-rule.data.consume-rule.model'));
     }
 }

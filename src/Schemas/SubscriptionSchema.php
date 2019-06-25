@@ -4,6 +4,7 @@ namespace Railken\Amethyst\Schemas;
 
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
+use Railken\Amethyst\Managers\ConsumeRuleManager;
 
 class SubscriptionSchema extends Schema
 {
@@ -17,15 +18,19 @@ class SubscriptionSchema extends Schema
         return [
             Attributes\IdAttribute::make(),
             Attributes\EnumAttribute::make('status', config('amethyst.subscription.data.subscription.attributes.status.options'))
-                ->setRequired(true),
-            Attributes\LongTextAttribute::make('description'),
-            Attributes\EnumAttribute::make('subscriptionable_type', app('amethyst')->getMorphListable('subscription', 'subscriptionable'))
-                ->setRequired(true),
+                ->setRequired(true)
+                ->setDefault(function ($entity) {
+                    return config('amethyst.subscription.data.subscription.attributes.status.options')[0];
+                }),
+            Attributes\YamlAttribute::make('metadata'),
+            Attributes\BelongsToAttribute::make('consume_rule_id')
+                ->setRelationManager(ConsumeRuleManager::class)
+                ->setRelationName('consume_rule'),
+            Attributes\EnumAttribute::make('subscriptionable_type', app('amethyst')->getMorphListable('subscription', 'subscriptionable')),
             Attributes\MorphToAttribute::make('subscriptionable_id')
                 ->setRelationKey('subscriptionable_type')
                 ->setRelationName('subscriptionable')
-                ->setRelations(app('amethyst')->getMorphRelationable('subscription', 'subscriptionable'))
-                ->setRequired(true),
+                ->setRelations(app('amethyst')->getMorphRelationable('subscription', 'subscriptionable')),
             Attributes\CreatedAtAttribute::make(),
             Attributes\UpdatedAtAttribute::make(),
             Attributes\DeletedAtAttribute::make(),
