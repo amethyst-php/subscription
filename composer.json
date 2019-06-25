@@ -30,7 +30,7 @@
         },
         "laravel": {
             "providers": [
-                "Railken\\Amethyst\\Providers\\CycleServiceProvider"
+                "Railken\\Amethyst\\Providers\\SubscriptionServiceProvider"
             ]
         }
     }
