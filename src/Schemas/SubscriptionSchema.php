@@ -2,9 +2,9 @@
 
 namespace Railken\Amethyst\Schemas;
 
+use Railken\Amethyst\Managers\ConsumeRuleManager;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
-use Railken\Amethyst\Managers\ConsumeRuleManager;
 
 class SubscriptionSchema extends Schema
 {
