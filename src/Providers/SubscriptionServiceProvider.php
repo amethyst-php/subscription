@@ -1,8 +1,8 @@
 <?php
 
-namespace Railken\Amethyst\Providers;
+namespace Amethyst\Providers;
 
-use Railken\Amethyst\Common\CommonServiceProvider;
+use Amethyst\Common\CommonServiceProvider;
 
 class SubscriptionServiceProvider extends CommonServiceProvider
 {
@@ -13,6 +13,6 @@ class SubscriptionServiceProvider extends CommonServiceProvider
     {
         parent::register();
 
-        $this->app->register(\Railken\Amethyst\Providers\ConsumeRuleServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\ConsumeRuleServiceProvider::class);
     }
 }
