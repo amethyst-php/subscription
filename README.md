@@ -1,6 +1,6 @@
 # amethyst-subscription
 
-[![Build Status](https://travis-ci.org/amethyst-php/subscription.svg?branch=master)](https://travis-ci.org/amethyst-php/subscription)
+[![Action Status](https://github.com/amethyst-php/subscription/workflows/test/badge.svg)](https://github.com/amethyst-php/subscription/actions)
 
 [Amethyst](https://github.com/amethyst-php/amethyst) package.
 
