@@ -26,11 +26,11 @@ class SubscriptionSchema extends Schema
             Attributes\BelongsToAttribute::make('consume_rule_id')
                 ->setRelationManager(ConsumeRuleManager::class)
                 ->setRelationName('consume_rule'),
-            Attributes\EnumAttribute::make('subscriptionable_type', app('amethyst')->getMorphListable('subscription', 'subscriptionable')),
+            Attributes\EnumAttribute::make('subscriptionable_type', app('amethyst')->getDataNames()),
             Attributes\MorphToAttribute::make('subscriptionable_id')
                 ->setRelationKey('subscriptionable_type')
                 ->setRelationName('subscriptionable')
-                ->setRelations(app('amethyst')->getMorphRelationable('subscription', 'subscriptionable')),
+                ->setRelations(app('amethyst')->getDataManagers()),
             Attributes\CreatedAtAttribute::make(),
             Attributes\UpdatedAtAttribute::make(),
             Attributes\DeletedAtAttribute::make(),
